@@ -5,6 +5,8 @@ import twitter4j.*;
  */
 public class TwitterSample {
 
+    private static Producer producer = new Producer("kafka:9092");
+
     /**
      * Main entry of this application.
      *
@@ -22,6 +24,7 @@ public class TwitterSample {
             @Override
             public void onStatus(Status status) {
                 System.out.println("@" + status.getUser().getScreenName() + " - " + status.getText());
+                producer.send(status.getLang()==null?"undefined":status.getLang(), status.getText().toString());
             }
 
             /**
