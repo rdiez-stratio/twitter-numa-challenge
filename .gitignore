@@ -1,0 +1,7 @@
+jq
+*.log
+.minimesos
+minimesos/
+*.iml
+target
+.idea
